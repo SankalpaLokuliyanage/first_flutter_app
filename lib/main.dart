@@ -28,8 +28,26 @@ class MyApp extends StatelessWidget {
    Widget build(BuildContext context) {
      return Scaffold(
        appBar: AppBar(
-         title: Text("Sankalpa"),),
+         title: Text("Sankalpa")),
+         body: TextInputWidget()
      );
     
+   }
+ }
+
+ class TextInputWidget extends StatefulWidget {
+   
+   @override
+   _TextInputWidgetState createState() => _TextInputWidgetState();
+ }
+ 
+ class _TextInputWidgetState extends State<TextInputWidget> {
+   @override
+   Widget build(BuildContext context) {
+     return TextField(
+       decoration: InputDecoration(
+         prefixIcon: Icon(Icons.message),
+         labelText: "Type a message"),
+       );
    }
  }
