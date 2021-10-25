@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
          body: Column(
            children: [
              Expanded(child: PostList(this.posts)),
-             Expanded(child: TextInputWidget(this.newPost)),
+             TextInputWidget(this.newPost),
              ],
          )
      );
@@ -93,8 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
    }
 
   void click() {
-    widget.callback(controller.text);
+    FocusScope.of(context).unfocus();
     controller.clear();
+    widget.callback(controller.text);
   }
 
    @override
@@ -156,6 +157,7 @@ PostList(this.listItems);
                IconButton(
                  icon: Icon(Icons.thumb_up),
                  onPressed: () => this.like(post.likePost),
+                 color: post.userLiked ? Colors.redAccent : Colors.black,
                )
              ],)
            ],),
