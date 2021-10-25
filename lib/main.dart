@@ -129,6 +129,13 @@ PostList(this.listItems);
  }
  
  class _PostListState extends State<PostList> {
+
+   void like(Function callback) {
+     this.setState(() {
+       callback();
+     });
+   }
+
    @override
    Widget build(BuildContext context) {
      return ListView.builder(
@@ -139,9 +146,16 @@ PostList(this.listItems);
            child: Row(children: [
              Expanded(child: ListTile(title: Text(post.body), subtitle: Text(post.author),)),
              Row(children: [
+              Container(
+                child: Text(
+                  post.likes.toString(),style: TextStyle(fontSize: 20),
+                ), 
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 10),
+              ),
+
                IconButton(
                  icon: Icon(Icons.thumb_up),
-                 onPressed: post.likePost,
+                 onPressed: () => this.like(post.likePost),
                )
              ],)
            ],),
